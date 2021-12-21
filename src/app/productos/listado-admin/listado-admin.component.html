@@ -1,0 +1,37 @@
+<br>
+<div class="container">
+<button class="btn btn-primary" routerLink="/clientes/crear" routerLinkActive="active">Crear cliente</button>
+<br>
+<br>
+<table class="table container table-hover">
+  <thead  class="table-dark">
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Precio</th>
+      <th>Categoria</th>
+      <th>Estado</th>
+      <th>Descripcion</th>
+      <th>Cantidad</th>
+      <th *ngIf="authService.token">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of productos">
+      <th scope="row">{{p.id}}</th>
+      <td>{{p.nombre}}</td>
+      <td>{{p.precio}}</td>
+      <td>{{p.categoria}}</td>
+      <td>{{p.estado}}</td>
+      <td>{{p.descripcion}}</td>
+      <td>{{p.cantidad}}</td>
+      <td *ngIf="authService.token">
+        <button class="btn btn-primary " [routerLink]="['/productos/editar',p.id]">Editar</button>
+        <button class="btn btn-danger" (click)="delete(p)">Eliminar </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br>
+<br>

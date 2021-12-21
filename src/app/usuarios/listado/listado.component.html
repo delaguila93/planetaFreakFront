@@ -1,0 +1,56 @@
+<br>
+<div class="container">
+<button class="btn btn-primary" routerLink="/clientes/crear" routerLinkActive="active">Crear cliente</button>
+<br>
+<br>
+<table class="table container table-hover">
+  <thead  class="table-dark">
+    <tr>
+      <th>ID</th>
+      <th>Foto</th>
+      <th>Nombre</th>
+      <th>Apellidos</th>
+      <th>Email</th>
+      <th>Username</th>
+
+      <th *ngIf="authService.token">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let c of usuarios">
+      <th scope="row">{{c.id}}</th>
+      <td scope="row">
+          <!--<button
+            type="button"
+            class="btn btn-success btn-sm"
+            [routerLink]="['/clientes/ver',item.id]">
+            {{item.id}}
+          </button>-->
+        <a [routerLink]="['/usuarios/ver',c.id]">
+
+
+        <img *ngIf="c.imagen"
+        src="http://localhost:8080/api/usuarios/uploads/img/{{c.imagen}}" alt="{{c.imagen}}" class="img-thumbnail rounded"
+        style="width:64px; cursor: pointer;">
+
+        <img *ngIf="!c?.imagen"
+          src="{{imageSrc}}" alt="Sin foto" class="img-thumbnail rounded"
+          style="width:64px; cursor: pointer;">
+        </a>
+
+      </td>
+      <td>{{c.nombre}}</td>
+      <td>{{c.apellidos}}</td>
+      <td>{{c.email}}</td>
+      <td>{{c.username}}</td>
+
+      <td *ngIf="authService.token">
+        <button class="btn btn-primary " [routerLink]="['/usuarios/editar',c.id]">Editar</button>
+        <button class="btn btn-danger" (click)="delete(c)">Eliminar </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br>
+<br>

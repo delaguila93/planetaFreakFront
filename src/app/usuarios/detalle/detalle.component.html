@@ -1,0 +1,41 @@
+<div class="card bg-white text-dark">
+
+    <div class="card-body">
+
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+
+            <ul *ngIf="cliente" class="list-group list-group-flush text-dark mb-3">
+              <li class="list-group-item">{{usuario.nombre}}</li>
+              <li class="list-group-item">{{usuario.apellidos}}</li>
+              <li class="list-group-item">{{usuario.email}}</li>
+              <li class="list-group-item">{{usuario.username}}</li>
+            </ul>
+
+            <div class="input-group">
+
+              <div class="custom-file">
+                <input (change)="seleccionarFoto($event)" type="file" class="form-control" id="inputGroupFile04" placeholder="Selecciona una imagen">
+                <label class="form-label" for="inputGroupFile04">Buscar Foto</label>
+              </div>
+              <div class="input-group-append">
+                <button (click)="subirFoto()" class="btn btn-outline-secondary" type="button">Guardar</button>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-sm">
+            <img *ngIf="cliente?.imagen" src="http://localhost:8080/api/usuarios/uploads/img/{{usuario.imagen}}"
+            alt="{{usuario.imagen}}" class="img-thumbnail row">
+
+          </div>
+
+        </div>
+      </div>
+
+
+
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="card bg-white text-dark">
+  <div class="card-header">Detalle Cliente</div>
+    <div class="card-body">
+
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+
+            <ul *ngIf="producto" class="list-group list-group-flush text-dark mb-3">
+              <li class="list-group-item">{{producto.nombre}}</li>
+              <li class="list-group-item">{{producto.descripcion}}</li>
+              <li class="list-group-item">{{producto.precio}}</li>
+              <li class="list-group-item">{{producto.categoria}}</li>
+            </ul>
+
+          </div>
+
+          <div class="col-sm">
+            <img *ngIf="producto?.imagen" src="http://localhost:8080/api/productos/uploads/img/{{producto.imagen}}"
+            alt="{{producto.imagen}}" class="img-thumbnail row">
+            <button class="btn btn-success" *ngIf="producto.estado =='Stock'" (click)="comprar()">Comprar</button>
+            <button class="btn btn-success disabled" *ngIf="producto.estado == 'Agotado'">Agotado</button>
+
+          </div>
+
+        </div>
+      </div>
+
+
+
+  </div>
+</div>

@@ -1,0 +1,71 @@
+<ul class="nav nav-tabs mb-3" id="ex1" role="tablist">
+  <li class="nav-item" role="presentation">
+    <a
+      class="nav-link active"
+      id="ex1-tab-1"
+      data-mdb-toggle="tab"
+      href="#ex1-tabs-1"
+      role="tab"
+      aria-controls="ex1-tabs-1"
+      aria-selected="true" (click)="limpiarBusqueda()"
+      >Busqueda nombre</a
+    >
+  </li>
+  <li class="nav-item" role="presentation">
+    <a
+      class="nav-link"
+      id="ex1-tab-2"
+      data-mdb-toggle="tab"
+      href="#ex1-tabs-2"
+      role="tab"
+      aria-controls="ex1-tabs-2"
+      aria-selected="false" (click)="limpiarBusqueda()"
+      >Busqueda Categoria</a
+    >
+  </li>
+
+</ul>
+<!-- Tabs navs -->
+
+<!-- Tabs content -->
+<div class="tab-content" id="ex1-content">
+  <div
+    class="tab-pane fade show active"
+    id="ex1-tabs-1"
+    role="tabpanel"
+    aria-labelledby="ex1-tab-1">
+
+    <br>
+    <input type="text" [(ngModel)] ="nombreBusqueda">
+    
+    <button class="btn btn-primary" (click)="buscarNombre()">Buscar</button>
+  </div>
+  <div class="tab-pane fade" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
+    <div class="form-group mt-4">
+      <label for="region" class="col-form-label col-sm-2">Categoria</label>
+      <div class="col-sm-6">
+        <select class="form-control" [(ngModel)]="categoriaBusqueda" name="region" style="width:500px;">
+          <option [ngValue]="undefined">--- Seleccionar una categoria ---</option>
+          <option *ngFor="let c of categorias" [ngValue]="c">{{c}}</option>
+        </select>
+        <br>
+        <button class="btn btn-primary" (click)="buscarCategoria()">Buscar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+<div class="row row-cols-1 row-cols-md-3 g-4 container" *ngIf="busqueda.length != 0">
+  <div class="col" *ngFor="let producto of busqueda">
+    <div class="card h-25">
+      <img img src="http://localhost:8080/api/productos/uploads/img/{{producto.imagen}}" alt="{{producto.imagen}}" class="card-img-top"/>
+      <div class="card-body">
+        <h5 class="card-title">{{producto.nombre }}</h5>
+        <p>{{producto.precio | currency:'currencyCharacter':'€'}}</p>
+        <a href="#" [routerLink]="['/productos/ver',producto.id]" class="btn btn-primary mt-auto align-self-start">Ver</a>
+      </div>
+    </div>
+  </div>
+</div>
+
